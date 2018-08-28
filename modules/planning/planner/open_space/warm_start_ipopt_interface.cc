@@ -107,7 +107,7 @@ bool WarmStartIPOPTInterface::get_bounds_info(int n, double* x_l, double* x_u,
     x_u[variable_index + 1] = XYbounds_(3, 0);
 
     // phi
-    // TODO(QiL): Change this to configs
+    // TODO(JinYun): Change this to configs
     x_l[variable_index + 2] = -7;
     x_u[variable_index + 2] = 7;
 

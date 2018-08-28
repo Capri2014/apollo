@@ -38,19 +38,19 @@ apollo::common::Status OpenSpacePlanner::Plan(
     const common::TrajectoryPoint& planning_init_point, Frame* frame) {
   // Problem setup
 
-  // TODO(QiL) : cleaning up : load control configs from VehicleParam at
+  // TODO(JinYun) : cleaning up : load control configs from VehicleParam at
   // initialization
   // horizon
   std::size_t horizon = 80;
   // nominal sampling time
-  float ts = 0.3;
+  float ts = 0.1;
 
   Eigen::MatrixXd ego(4, 1);
   ego << 3.7, 1, 1, 1;
 
   // initial state
 
-  // TODO(QiL): Step 1 : Get initial state from VehicleState when enabled.
+  // TODO(JinYun): Step 1 : Get initial state from VehicleState when enabled.
 
   Eigen::MatrixXd x0(4, 1);
   x0 << -12, 11, 0, 0;
@@ -117,7 +117,7 @@ apollo::common::Status OpenSpacePlanner::Plan(
     return Status(ErrorCode::PLANNING_ERROR,
                   "Warm start problem failed to solve");
   }
-  // TODO(QiL) : Step 7 : Formualte H representation of obstacles
+  // TODO(JiaXuan) : Step 7 : Formualte H representation of obstacles
 
   Eigen::MatrixXd AOb = Eigen::MatrixXd::Zero(vOb.sum(), 2);
   Eigen::MatrixXd bOb = Eigen::MatrixXd::Zero(vOb.sum(), 1);
@@ -159,7 +159,7 @@ apollo::common::Status OpenSpacePlanner::Plan(
 Status ObsHRep(const std::size_t& nOb, const Eigen::MatrixXd& vOb,
                const std::vector<std::vector<std::vector<double>>>& lOb,
                Eigen::MatrixXd* A_all, Eigen::MatrixXd* b_all) {
-  // TODO(QiL) : Code replacement : find alternative ways for H presentation
+  // TODO(JiaXuan) : Code replacement : find alternative ways for H presentation
   // caculation
   /*
   CHECK(nOb == lOb.rows()) << "No. of obstacles size mismatch, nOb : " << nOb
