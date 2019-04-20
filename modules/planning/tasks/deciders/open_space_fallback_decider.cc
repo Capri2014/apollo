@@ -124,8 +124,13 @@ Status OpenSpaceFallbackDecider::Process(Frame* frame) {
       }
     }
 
+<<<<<<< HEAD
     AERROR << "stop index before is: " << stop_index;
     AERROR << "fallback_start index before is: " << fallback_start_index;
+=======
+    ADEBUG << "stop index before is: " << stop_index;
+    ADEBUG << "fallback_start index before is: " << fallback_start_index;
+>>>>>>> Planning: redeign open space planner fallback
 
     for (size_t i = 0; i < fallback_start_index; ++i) {
       fallback_trajectory_pair_candidate.first[i].set_v(
@@ -216,8 +221,13 @@ Status OpenSpaceFallbackDecider::Process(Frame* frame) {
     ADEBUG << "fallback start point after changes: "
            << fallback_start_point.DebugString();
 
+<<<<<<< HEAD
     AERROR << "stop index: " << stop_index;
     AERROR << "fallback start index: " << fallback_start_index;
+=======
+    ADEBUG << "stop index: " << stop_index;
+    ADEBUG << "fallback start index: " << fallback_start_index;
+>>>>>>> Planning: redeign open space planner fallback
 
     // 2. Erase afterwards
     fallback_trajectory_pair_candidate.first.erase(
