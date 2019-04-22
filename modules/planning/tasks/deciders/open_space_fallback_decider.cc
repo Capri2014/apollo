@@ -84,6 +84,15 @@ Status OpenSpaceFallbackDecider::Process(Frame* frame) {
     const auto future_collision_point =
         fallback_trajectory_pair_candidate.first[first_collision_index];
 
+    AERROR << "Future collision point: "
+           << future_collision_point.DebugString();
+    /*
+        if (future_collision_point_last_.has_path_point()) {
+          CHECK_LT(std::abs(future_collision_point_last_.path_point().x() -
+                            future_collision_point.path_point().x()),
+                   0.01);
+        }
+    */
     // Fallback starts from current location but with vehicle velocity
     auto fallback_start_point =
         fallback_trajectory_pair_candidate.first[fallback_start_index];
@@ -124,13 +133,8 @@ Status OpenSpaceFallbackDecider::Process(Frame* frame) {
       }
     }
 
-<<<<<<< HEAD
     AERROR << "stop index before is: " << stop_index;
     AERROR << "fallback_start index before is: " << fallback_start_index;
-=======
-    ADEBUG << "stop index before is: " << stop_index;
-    ADEBUG << "fallback_start index before is: " << fallback_start_index;
->>>>>>> Planning: redeign open space planner fallback
 
     for (size_t i = 0; i < fallback_start_index; ++i) {
       fallback_trajectory_pair_candidate.first[i].set_v(
@@ -164,6 +168,12 @@ Status OpenSpaceFallbackDecider::Process(Frame* frame) {
         fallback_trajectory_pair_candidate.first.AppendTrajectoryPoint(
             trajectory_point);
       }
+
+      AERROR
+          << "stop point is, single point: "
+          << fallback_trajectory_pair_candidate.first[stop_index].DebugString();
+
+      future_collision_point_last_ = future_collision_point;
 
       *(frame_->mutable_open_space_info()->mutable_fallback_trajectory()) =
           fallback_trajectory_pair_candidate;
@@ -221,13 +231,8 @@ Status OpenSpaceFallbackDecider::Process(Frame* frame) {
     ADEBUG << "fallback start point after changes: "
            << fallback_start_point.DebugString();
 
-<<<<<<< HEAD
     AERROR << "stop index: " << stop_index;
     AERROR << "fallback start index: " << fallback_start_index;
-=======
-    ADEBUG << "stop index: " << stop_index;
-    ADEBUG << "fallback start index: " << fallback_start_index;
->>>>>>> Planning: redeign open space planner fallback
 
     // 2. Erase afterwards
     fallback_trajectory_pair_candidate.first.erase(
@@ -244,6 +249,8 @@ Status OpenSpaceFallbackDecider::Process(Frame* frame) {
       fallback_trajectory_pair_candidate.first.AppendTrajectoryPoint(
           trajectory_point);
     }
+
+    future_collision_point_last_ = future_collision_point;
 
     *(frame_->mutable_open_space_info()->mutable_fallback_trajectory()) =
         fallback_trajectory_pair_candidate;

@@ -60,6 +60,8 @@ class OpenSpaceFallbackDecider : public Decider {
 
   bool QuardraticFormulaLowerSolution(const double a, const double b,
                                       const double c, double* sol);
+
+  common::TrajectoryPoint future_collision_point_last_;
 };
 
 }  // namespace planning

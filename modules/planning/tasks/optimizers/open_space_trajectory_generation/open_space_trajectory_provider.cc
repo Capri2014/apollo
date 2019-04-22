@@ -151,9 +151,10 @@ Status OpenSpaceTrajectoryProvider::Process() {
       is_generation_thread_stop_.store(true);
       return Status(ErrorCode::OK, "Vehicle is near to destination");
     }
-
+    AERROR << "trajectory not Update!";
     // Check if trajectory updated
     if (trajectory_updated_) {
+      AERROR << "trajectory Update!";
       std::lock_guard<std::mutex> lock(open_space_mutex_);
       LoadResult(trajectory_data);
       if (FLAGS_enable_record_debug) {
