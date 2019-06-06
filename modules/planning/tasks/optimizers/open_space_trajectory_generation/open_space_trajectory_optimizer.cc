@@ -180,6 +180,9 @@ common::Status OpenSpaceTrajectoryOptimizer::Plan(
                         "distance approach smoothing problem failed to solve");
         }
       } else {
+        if (xWS_vec[i].cols() == 2) {
+          InsertInterpolatePoint(&xWS_vec[i], &uWS_vec[i]);
+        }
         if (!GenerateDistanceApproachTraj(
                 xWS_vec[i], uWS_vec[i], XYbounds, obstacles_edges_num,
                 obstacles_A, obstacles_b, obstacles_vertices_vec, last_time_u,
@@ -843,6 +846,9 @@ void OpenSpaceTrajectoryOptimizer::LoadResult(
                         discretized_trajectory[i].relative_time();
   }
 }
+
+void OpenSpaceTrajectoryOptimizer::InsertInterpolatePoint(
+    Eigen::MatrixXd* xWS, Eigen::MatrixXd* uWS) {}
 
 }  // namespace planning
 }  // namespace apollo

@@ -154,6 +154,8 @@ class OpenSpaceTrajectoryOptimizer {
       Eigen::MatrixXd* n_warm_up, Eigen::MatrixXd* dual_l_result_ds,
       Eigen::MatrixXd* dual_n_result_ds);
 
+  void InsertInterpolatePoint(Eigen::MatrixXd* xWS, Eigen::MatrixXd* uWS);
+
  private:
   OpenSpaceTrajectoryOptimizerConfig config_;
 
