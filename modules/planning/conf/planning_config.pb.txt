@@ -201,11 +201,10 @@ default_task_config: {
           enable_jacobian_ad: false
           enable_hand_derivative: false
           enable_derivative_check: false
-          distance_approach_mode: DISTANCE_APPROACH_IPOPT
+          distance_approach_mode: DISTANCE_APPROACH_IPOPT_RELAX_END
           enable_check_initial_state: false
         }
         delta_t: 0.5
-        is_near_destination_threshold: 0.1
         enable_check_parallel_trajectory: false
         enable_linear_interpolation: false
       }
@@ -226,7 +225,7 @@ default_task_config: {
     heading_offset_to_midpoint: 0.79
     lateral_offset_to_midpoint: 0.5
     longitudinal_offset_to_midpoint: 0.2
-    vehicle_box_iou_threshold_to_midpoint: 0.9
+    vehicle_box_iou_threshold_to_midpoint: 0.0
   }
 }
 default_task_config: {
@@ -241,7 +240,7 @@ default_task_config: {
     roi_linesegment_length: 1.0
     perception_obstacle_filtering_distance: 1000.0
     perception_obstacle_buffer: 0.0
-    bound_width_change_ratio_uppper_limit: 0.5
+    bound_width_change_ratio_uppper_limit: 0.1
   }
 }
 default_task_config: {
